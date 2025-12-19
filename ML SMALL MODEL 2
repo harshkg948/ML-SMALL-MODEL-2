@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+df = pd.read_csv('sample_data.csv')
+X = df[['MARKS']]
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['REMARK_encoded'] = le.fit_transform(df['REMARK']) 
+y = df['REMARK_encoded']
+from sklearn.linear_model import LogisticRegression
+lo = LogisticRegression()
+lo.fit(X,y)
+marks = float(input("enter the marks: "))
+remark_answer = lo.predict([[marks]])[0]
+print(f"your have got {marks} marks this means you are {remark_answer}")
